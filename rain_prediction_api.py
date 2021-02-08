@@ -5,6 +5,8 @@ Can predict for Hobart, Melbourne and Sydney
 from fastapi import FastAPI
 from pydantic import BaseModel
 from joblib import load
+import psycopg2
+import os
 
 class PredictionPayload(BaseModel):
     """
@@ -64,3 +66,14 @@ async def predict_sydney(payload: PredictionPayload):
     prediction = sydney_ml_model.predict([[payload.WindGustSpeed, payload.HumitidtyThreePm, payload.PressureThreePm, 
                                         payload.TempThreePm, payload.RainToday, payload.WindDirThreePm]])
     return {'prediction': prediction[0]}
+
+
+@app.get('/obs/{city}')
+async def get_observations(city: str):
+    print(city)
+    connection = psycopg2.connect(os.environ['BOM_DATA_POSTGRES_URI'])
+    cursor = connection.cursor()
+    cursor.execute("""SELECT * from weatherData where location = %s ORDER BY id DESC LIMIT 1""", (city,))
+    obs_data = cursor.fetchone()
+    connection.close()  
+    return obs_data
