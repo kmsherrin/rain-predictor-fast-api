@@ -26,9 +26,9 @@ In this instance for speed we can load the models into memory and it won't cause
 The rain prediction models are pretty small in comparison to some complex image recognition or text generation models
 Loading from these also means we don't need to import any other dependencies 
 """
-hobart_ml_model = load('C:/Users/Kendall/hobart_rain_prediction_model.joblib')
-melbourne_ml_model = load('C:/Users/Kendall/melbourne_rain_prediction_model.joblib')
-sydney_ml_model = load('C:/Users/Kendall/sydney_rain_prediction_model.joblib')
+hobart_ml_model = load('ml_models/hobart_rain_prediction_model.joblib')
+melbourne_ml_model = load('ml_models/melbourne_rain_prediction_model.joblib')
+sydney_ml_model = load('ml_models/sydney_rain_prediction_model.joblib')
 
 @app.get("/")
 async def root():
