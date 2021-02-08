@@ -77,5 +77,15 @@ async def get_observations(city: str):
     cursor = connection.cursor()
     cursor.execute("""SELECT * from weatherData where location = %s ORDER BY id DESC LIMIT 1""", (city,))
     obs_data = cursor.fetchone()
+    
+    returning_data = {
+        "WindGustSpeed": obs_data[3],
+        "HumitidtyThreePm": obs_data[4],
+        "PressureThreePm": obs_data[5],
+        "TempThreePm": obs_data[6],
+        "RainToday": obs_data[7],
+        "WindDirThreePm": obs_data[8]
+        }
+
     connection.close()  
-    return obs_data
+    return returning_data
