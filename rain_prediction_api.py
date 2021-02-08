@@ -50,20 +50,20 @@ async def root():
 The routes below are the ones that will generate a rain prediction when posted to
 """
 
-@app.get("/predict/hobart")
+@app.post("/predict/hobart")
 async def predict_hobart(payload: PredictionPayload):
     prediction = hobart_ml_model.predict([[payload.WindGustSpeed, payload.HumitidtyThreePm, payload.PressureThreePm, 
                                         payload.TempThreePm, payload.RainToday, payload.WindDirThreePm]])
     return {'prediction': prediction[0]}
 
 
-@app.get("/predict/melbourne")
+@app.post("/predict/melbourne")
 async def predict_melbourne(payload: PredictionPayload):
     prediction = melbourne_ml_model.predict([[payload.WindGustSpeed, payload.HumitidtyThreePm, payload.PressureThreePm, 
                                         payload.TempThreePm, payload.RainToday, payload.WindDirThreePm]])
     return {'prediction': prediction[0]}
 
-@app.get("/predict/sydney")
+@app.post("/predict/sydney")
 async def predict_sydney(payload: PredictionPayload):    
     prediction = sydney_ml_model.predict([[payload.WindGustSpeed, payload.HumitidtyThreePm, payload.PressureThreePm, 
                                         payload.TempThreePm, payload.RainToday, payload.WindDirThreePm]])
