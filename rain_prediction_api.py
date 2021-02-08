@@ -24,7 +24,6 @@ app = FastAPI()
 """
 In this instance for speed we can load the models into memory and it won't cause too much concern.
 The rain prediction models are pretty small in comparison to some complex image recognition or text generation models
-Loading from these also means we don't need to import any other dependencies 
 """
 hobart_ml_model = load('ml_models/hobart_rain_prediction_model.joblib')
 melbourne_ml_model = load('ml_models/melbourne_rain_prediction_model.joblib')
