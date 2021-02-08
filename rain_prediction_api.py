@@ -3,6 +3,7 @@ Super duper simple and quick API for serving machine learning model predictions 
 Can predict for Hobart, Melbourne and Sydney
 """
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from joblib import load
 import psycopg2
@@ -22,6 +23,16 @@ class PredictionPayload(BaseModel):
 
 # Start the instance
 app = FastAPI()
+
+origins = ["http://localhost"]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 """
 In this instance for speed we can load the models into memory and it won't cause too much concern.
