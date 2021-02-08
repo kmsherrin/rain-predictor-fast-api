@@ -24,7 +24,7 @@ class PredictionPayload(BaseModel):
 # Start the instance
 app = FastAPI()
 
-origins = ["http://localhost"]
+origins = ["http://localhost", 'https://rain-predictor-app.herokuapp.com/']
 
 app.add_middleware(
     CORSMiddleware,
