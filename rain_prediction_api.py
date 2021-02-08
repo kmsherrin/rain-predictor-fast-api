@@ -26,13 +26,13 @@ app = FastAPI()
 
 origins = ["http://localhost", 'https://rain-predictor-app.herokuapp.com/', '*']
 
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=origins,
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
+# app.add_middleware(
+#     CORSMiddleware,
+#     allow_origins=origins,
+#     allow_credentials=True,
+#     allow_methods=["*"],
+#     allow_headers=["*"],
+# )
 
 """
 In this instance for speed we can load the models into memory and it won't cause too much concern.
