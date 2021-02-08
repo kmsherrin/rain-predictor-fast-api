@@ -35,33 +35,24 @@ sydney_ml_model = load('ml_models/sydney_rain_prediction_model.joblib')
 async def root():
     return {"message": "Hi, I will predict rain for you. Get /help if you need some guidance"}
 
-@app.get("/help")
-async def help():
-    return {"message": "Navigate to docs at /docs ✌"}
-
-@app.get("/predict/hobart")
-async def hobart():
-    return {"message": "Please post to this route to receive some top notch predictions"}
-
-
 """
 The routes below are the ones that will generate a rain prediction when posted to
 """
 
-@app.post("/predict/hobart")
+@app.get("/predict/hobart")
 async def predict_hobart(payload: PredictionPayload):
     prediction = hobart_ml_model.predict([[payload.WindGustSpeed, payload.HumitidtyThreePm, payload.PressureThreePm, 
                                         payload.TempThreePm, payload.RainToday, payload.WindDirThreePm]])
     return {'prediction': prediction[0]}
 
 
-@app.post("/predict/melbourne")
+@app.get("/predict/melbourne")
 async def predict_melbourne(payload: PredictionPayload):
     prediction = melbourne_ml_model.predict([[payload.WindGustSpeed, payload.HumitidtyThreePm, payload.PressureThreePm, 
                                         payload.TempThreePm, payload.RainToday, payload.WindDirThreePm]])
     return {'prediction': prediction[0]}
 
-@app.post("/predict/sydney")
+@app.get("/predict/sydney")
 async def predict_sydney(payload: PredictionPayload):    
     prediction = sydney_ml_model.predict([[payload.WindGustSpeed, payload.HumitidtyThreePm, payload.PressureThreePm, 
                                         payload.TempThreePm, payload.RainToday, payload.WindDirThreePm]])
