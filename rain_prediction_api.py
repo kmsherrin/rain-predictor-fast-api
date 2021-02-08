@@ -30,7 +30,6 @@ hobart_ml_model = load('C:/Users/Kendall/hobart_rain_prediction_model.joblib')
 melbourne_ml_model = load('C:/Users/Kendall/melbourne_rain_prediction_model.joblib')
 sydney_ml_model = load('C:/Users/Kendall/sydney_rain_prediction_model.joblib')
 
-
 @app.get("/")
 async def root():
     return {"message": "Hi, I will predict rain for you. Get /help if you need some guidance"}
@@ -38,7 +37,7 @@ async def root():
 @app.get("/help")
 async def help():
     return {"message": "Navigate to docs at /docs ✌"}
-    
+
 @app.get("/predict/hobart")
 async def hobart():
     return {"message": "Please post to this route to receive some top notch predictions"}
