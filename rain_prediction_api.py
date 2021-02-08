@@ -23,7 +23,7 @@ class PredictionPayload(BaseModel):
     RainToday: int
     WindDirThreePm: int
 
-origins = ["http://localhost", 'https://rain-predictor-app.herokuapp.com/', '*']
+origins = ['*']
 
 middleware = [Middleware(
     CORSMiddleware,
