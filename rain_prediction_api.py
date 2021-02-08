@@ -15,7 +15,7 @@ class PredictionPayload(BaseModel):
     of validation and generate clean errors if the incoming data does not match our model
     """
     WindGustSpeed: float
-    HumitidtyThreePm: float
+    HumidityThreePm: float
     PressureThreePm: float
     TempThreePm: float
     RainToday: int
@@ -80,7 +80,7 @@ async def get_observations(city: str):
     
     returning_data = {
         "WindGustSpeed": obs_data[3],
-        "HumitidtyThreePm": obs_data[4],
+        "HumidityThreePm": obs_data[4],
         "PressureThreePm": obs_data[5],
         "TempThreePm": obs_data[6],
         "RainToday": obs_data[7],
