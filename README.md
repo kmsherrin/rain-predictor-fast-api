@@ -6,4 +6,5 @@ I love the automatic in-built error handling that Fast provides, once an API mod
 
 There is one downfall to this implementation, which would definitely hurt the app if the models became more complex. In reality, the prediction step should be shifted into a Celery worker which then publishes to a Redis database. The frontend receives a key to be subscribed to the Redis database event. When the prediction completes, Celery would publish the result and Redis notifies the subscribers. 
 
-I suppose lastly - considering the current state of the app. The smartest option would to be just complete the predictions within the BOM scraper worker - but that'd be no fun 🤷‍♂️😁
+Lastly, considering the current state of the app, the smartest option would to be just complete the predictions within the BOM scraper worker - but that'd be no fun 🤷‍♂️😁
+
