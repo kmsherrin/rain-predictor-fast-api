@@ -3,7 +3,9 @@ Super duper simple and quick API for serving machine learning model predictions 
 Can predict for Hobart, Melbourne and Sydney
 """
 from fastapi import FastAPI
-from fastapi.middleware.cors import CORSMiddleware
+#from fastapi.middleware.cors import CORSMiddleware
+from starlette.middleware.cors import CORSMiddleware
+from starlette.middleware import Middleware
 from pydantic import BaseModel
 from joblib import load
 import psycopg2
@@ -21,18 +23,18 @@ class PredictionPayload(BaseModel):
     RainToday: int
     WindDirThreePm: int
 
-# Start the instance
-app = FastAPI()
-
 origins = ["http://localhost", 'https://rain-predictor-app.herokuapp.com/', '*']
 
-# app.add_middleware(
-#     CORSMiddleware,
-#     allow_origins=origins,
-#     allow_credentials=True,
-#     allow_methods=["*"],
-#     allow_headers=["*"],
-# )
+middleware = [Middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"])]
+
+# Start the instance
+app = FastAPI(middleware=middleware)
+
 
 """
 In this instance for speed we can load the models into memory and it won't cause too much concern.
