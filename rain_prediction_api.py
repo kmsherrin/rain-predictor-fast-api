@@ -77,7 +77,7 @@ async def get_observations(city: str):
     print(city)
     connection = psycopg2.connect(os.environ['BOM_DATA_POSTGRES_URI'])
     cursor = connection.cursor()
-    cursor.execute("""SELECT * from weatherData where location = %s ORDER BY id DESC LIMIT 1""", (city,))
+    cursor.execute("""SELECT * from weatherData where location = %s ORDER BY id LIMIT 1""", (city,))
     obs_data = cursor.fetchone()
     
     returning_data = {
